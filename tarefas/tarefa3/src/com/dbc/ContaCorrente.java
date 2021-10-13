@@ -1,3 +1,4 @@
+package com.dbc;
 public class ContaCorrente {
     Cliente cliente;
     String numeroConta;

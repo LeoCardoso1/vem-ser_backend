@@ -1,3 +1,4 @@
+package com.dbc;
 public class Endereco {
     Integer tipo;
     String logadouro;
