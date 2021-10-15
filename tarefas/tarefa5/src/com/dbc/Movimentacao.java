@@ -2,7 +2,7 @@ package com.dbc;
 
 public interface Movimentacao{
 
-    Boolean sacar(double valor);
-    Boolean depositar(double valor);
-    Boolean transferir(Conta contaDestino, double valor);
+    Boolean sacar(Double valor);
+    Boolean depositar(Double valor);
+    Boolean transferir(Conta contaDestino, Double valor);
 }

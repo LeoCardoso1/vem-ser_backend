@@ -7,13 +7,13 @@ public class ContaPagamento extends Conta implements Impressao {
     public void imprimir() {
         System.out.println("Conta Pagamento\nNome do cliente: " + (super.getCliente()).getNome() + "\nConta: "
                 + super.getNumeroConta() + "\nAgência:" + super.getAgencia() + "\nTaxa de saque: R$ " + TAXA_SAQUE
-                + "\n------------------");
+                + "\nSaldo: R$" + super.getSaldo() + "\n------------------" );
 
 
     }
 
     @Override
-    public Boolean sacar(double valor) {
+    public Boolean sacar(Double valor) {
         double saldoDaConta = super.getSaldo();
         double valorComTaxa = valor + TAXA_SAQUE;
 

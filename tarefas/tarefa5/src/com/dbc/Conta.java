@@ -41,19 +41,24 @@ public class Conta implements Movimentacao {
     }
 
     @Override
-    public Boolean sacar(double valor) {
+    public Boolean sacar(Double valor) {
         if (valor < 0) {
             System.out.println("Não é permitido sacar valores negativos");
             return false;
         } else {
-            saldo -= valor;
-            System.out.println("Operação saque feita com sucesso!");
-            return true;
+            if (valor > saldo) {
+                System.out.println("Saque maior que o saldo");
+                return false;
+            } else {
+                saldo -= valor;
+                System.out.println("Operação saque feita com sucesso!");
+                return true;
+            }
         }
     }
 
     @Override
-    public Boolean depositar(double valor) {
+    public Boolean depositar(Double valor) {
         if (valor < 0) {
             System.out.println("Não é permitido depositar valores negativos");
             return false;
@@ -65,16 +70,21 @@ public class Conta implements Movimentacao {
     }
 
     @Override
-    public Boolean transferir(Conta contaDestino, double valor) {
+    public Boolean transferir(Conta contaDestino, Double valor) {
         if (valor < 0) {
             System.out.println("Não é permitido transferir valores negativos. ");
             return false;
-        }else{
-            saldo -= valor;
-            double total = contaDestino.getSaldo() + valor;
-            contaDestino.setSaldo(total);
-            System.out.println("Operação transferência feita com sucesso. ");
-            return true;
+        }else {
+            if (valor > saldo) {
+                System.out.println("Valor maior que o saldo da conta");
+                return false;
+            } else {
+                saldo -= valor;
+                Double total = contaDestino.getSaldo() + valor;
+                contaDestino.setSaldo(total);
+                System.out.println("Operação transferência feita com sucesso. ");
+                return true;
+            }
         }
     }
 }

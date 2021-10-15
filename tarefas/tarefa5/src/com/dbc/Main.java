@@ -25,7 +25,7 @@ public class Main {
         contapoupanca1.setAgencia(304);
 
 
-        contapagamento1.sacar(10);
+        contapagamento1.sacar(10.0);
         contapoupanca1.transferir(contacorrente1, 200.0);
         contacorrente1.depositar(100.0);
 
@@ -34,6 +34,9 @@ public class Main {
         contacorrente1.imprimir();
         contapoupanca1.imprimir();
 
+        System.out.println(contacorrente1.getSaldo());
+        System.out.println(contacorrente1.getChequeEspecial());
+        contacorrente1.sacar(-10.0);
 
 
 
