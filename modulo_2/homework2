@@ -1,0 +1,87 @@
+INSERT INTO PAIS (id_pais, nome)
+     VALUES (1, 'Brasil');
+     
+    
+INSERT INTO PAIS (id_pais, nome)
+     VALUES (2, 'Japão');
+    
+INSERT INTO ESTADO 
+VALUES (1, 1, 'RS');
+
+INSERT INTO ESTADO 
+VALUES (2, 1, 'RJ');
+
+INSERT INTO ESTADO 
+VALUES (3, 2, 'Kanto');
+
+INSERT INTO ESTADO 
+VALUES (4, 2, 'Kansai');
+
+INSERT INTO CIDADE 
+VALUES (1, 1, 'Canoas');
+
+INSERT INTO CIDADE 
+VALUES (2, 2, 'Niterói');
+
+INSERT INTO CIDADE 
+VALUES (3, 3, 'Tóquio');
+
+INSERT INTO CIDADE 
+VALUES (4, 4, 'Osaka');
+
+INSERT INTO BAIRRO 
+VALUES (1, 1, 1, 'Fátima');
+
+INSERT INTO BAIRRO 
+VALUES (2, 2, 2, 'Pendotiba');
+
+INSERT INTO BAIRRO 
+VALUES (3, 3, 3, 'Akihabara');
+
+INSERT INTO BAIRRO 
+VALUES (4, 4, 4, 'Yao');
+
+INSERT INTO ENDERECO
+VALUES (1, 1, 1, 'Rua Ana Maria', 678, '', '92200-550');
+
+INSERT INTO ENDERECO
+VALUES (2, 1, 1, 'Avenida Guilherme Schell', 2962, '408', '92200-712');
+
+INSERT INTO ENDERECO
+VALUES (3, 2, 2, 'Rua Carolina Alves', 32, '306', '24322-310');
+
+INSERT INTO ENDERECO
+VALUES (4, 2, 2, 'Rua Bráulio Ralha', 43, '', '24320-010');
+
+INSERT INTO ENDERECO
+VALUES (5, 3, 3, 'Estrada Ennies Lobby', 1343, '', '35661-027');
+
+INSERT INTO ENDERECO
+VALUES (6, 3, 3, 'Rua Shinobi ', 2962, '', '81450-412');
+
+INSERT INTO ENDERECO
+VALUES (7, 4, 4, 'Avenida Kamado', 100, '308', '87043-426');
+
+INSERT INTO ENDERECO
+VALUES (8, 4, 4, 'Rua Itadori', 9006, '', '25904-360');
+
+SELECT NOME FROM PAIS                                          // Selecionar todos os países ordenados por nome decrescente
+ORDER BY NOME;
+
+SELECT LOGADOURO, CEP FROM ENDERECO                            // Selecionar logradouro e cep dos endereços. Porém, somente os logradouros que comecem com a letra ‘a’ (maiúsculo ou minúsculo)
+WHERE LOGADOURO LIKE 'A%' OR LOGADOURO LIKE 'a%';               
+
+SELECT CEP FROM ENDERECO                                       // Selecionar todos os endereços que tenham cep com final ‘0’
+WHERE CEP LIKE '%0';                                            
+
+SELECT NUMERO FROM ENDERECO                                    // Selecionar todos os endereços que tenham números entre 1 e 100
+WHERE NUMERO BETWEEN 1 AND 100;                                 
+
+SELECT LOGADOURO, CEP FROM ENDERECO                            // Selecionar todos os endereços que comecem por “RUA” e ordenar pelo cep de forma decrescente
+WHERE LOGADOURO LIKE 'Rua%'
+ORDER BY CEP DESC;
+
+SELECT COUNT(ID_ENDERECO) FROM ENDERECO;                       // Selecionar a quantidade de endereços cadastrados na tabela
+
+SELECT COUNT(ID_ENDERECO) FROM ENDERECO
+ORDER BY ID_CIDADE;
