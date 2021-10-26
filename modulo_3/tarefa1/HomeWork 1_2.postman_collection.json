@@ -19,7 +19,19 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://my-application-teste.herokuapp.com/contato/1",
+					"protocol": "https",
+					"host": [
+						"my-application-teste",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contato",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -28,7 +40,28 @@
 			"request": {
 				"method": "POST",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": " [{\n        \"idContato\": 4,\n        \"idPessoa\": 1,\n        \"tipoContato\": \"COMERCIAL2\",\n        \"numero\": \"142323443\",\n        \"descricao\": \"trabalho\"\n    }]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://my-application-teste.herokuapp.com/contato/1",
+					"protocol": "https",
+					"host": [
+						"my-application-teste",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contato",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -37,7 +70,28 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"url": null
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"idContato\": 1,\n        \"idPessoa\": 1,\n        \"tipoContato\": \"COMERCIAL\",\n        \"numero\": \"123456789\",\n        \"descricao\": \"zipzop\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://my-application-teste.herokuapp.com/contato/1",
+					"protocol": "https",
+					"host": [
+						"my-application-teste",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contato",
+						"1"
+					]
+				}
 			},
 			"response": []
 		},
@@ -46,7 +100,19 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://my-application-teste.herokuapp.com/contato/1",
+					"protocol": "https",
+					"host": [
+						"my-application-teste",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contato",
+						"1"
+					]
+				}
 			},
 			"response": []
 		}
