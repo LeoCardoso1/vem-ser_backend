@@ -111,7 +111,28 @@
 					"response": []
 				},
 				{
-					"name": "Busca endereço por ID",
+					"name": "Buscar Endereço",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/endereco/busca/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"busca",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca endereço por ID de pessoa",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -134,10 +155,19 @@
 				{
 					"name": "Criar Endereço por ID de pessoa",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"tipo\": \"RESIDENCIAL\",\n        \"logradouro\": \"Rua Franjinha\",\n        \"numero\": 125,\n        \"complemento\": \"\",\n        \"cep\": \"92030080\",\n        \"cidade\": \"Canoas\",\n        \"estado\": \"RS\",\n        \"pais\": \"Brasil\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/endereco/criar/{{idPessoa}}",
+							"raw": "http://localhost:8080/endereco/criar/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -146,36 +176,7 @@
 							"path": [
 								"endereco",
 								"criar",
-								"{{idPessoa}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Criar Endereco",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"idEndereco\" : 1,\n    \"idPessoa\" : 1,\n    \"tipo\" : \n\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/endereco/criar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"endereco",
-								"criar"
+								"1"
 							]
 						}
 					},

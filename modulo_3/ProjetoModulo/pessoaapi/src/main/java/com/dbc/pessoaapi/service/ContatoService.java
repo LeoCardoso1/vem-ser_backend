@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.service;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Contato;
 import com.dbc.pessoaapi.repository.ContatoRepository;
 import com.dbc.pessoaapi.repository.PessoaRepository;
@@ -15,17 +16,23 @@ public class ContatoService {
     @Autowired
     private ContatoRepository contatoRepository;
 
-    public Contato create(Contato contato){return contatoRepository.create(contato);}
+    @Autowired
+    private PessoaRepository pessoaRepository;
+
+    public Contato create(Integer idPessoa, Contato contato) throws RegraDeNegocioException{
+        pessoaRepository.getById(idPessoa);
+        return contatoRepository.create(idPessoa, contato);
+    }
 
     public List<Contato> list() {return contatoRepository.list();}
 
-    public void delete(Integer id) throws Exception{
+    public void delete(Integer id) throws RegraDeNegocioException{
         contatoRepository.delete(id);
     }
 
     public List<Contato> listByContact(Integer id){return contatoRepository.listByContact(id);}
 
-    public Contato editar(Integer id, Contato contato) throws Exception {
+    public Contato editar(Integer id, Contato contato) throws RegraDeNegocioException {
         return contatoRepository.editar(id, contato);
     }
 }

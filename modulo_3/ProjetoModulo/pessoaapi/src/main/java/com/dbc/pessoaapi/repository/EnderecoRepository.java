@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.repository;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Endereco;
 import com.dbc.pessoaapi.entity.Pessoa;
 import org.springframework.stereotype.Repository;
@@ -34,18 +35,17 @@ public class EnderecoRepository {
 
     }
 
-    public Endereco criarEnderecoPorIDPessoa(Integer id, Endereco endereco) {
-        endereco.setIdPessoa(id);
+    public Endereco criarEnderecoPorIDPessoa(Endereco endereco) {
         endereco.setIdEndereco(COUNTER.incrementAndGet());
         listaEnderecos.add(endereco);
         return endereco;
     }
 
-    public Endereco editar(Integer id, Endereco endereco) throws Exception {
+    public Endereco editar(Integer id, Endereco endereco) throws RegraDeNegocioException {
         Endereco enderecoAlterado = listaEnderecos.stream()
                 .filter(e -> e.getIdEndereco().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Endereço não encotrado"));
+                .orElseThrow(() -> new RegraDeNegocioException("Endereço não encotrado"));
         enderecoAlterado.setIdPessoa(endereco.getIdPessoa());
         enderecoAlterado.setTipo(endereco.getTipo());
         enderecoAlterado.setLogradouro(endereco.getLogradouro());
@@ -58,11 +58,11 @@ public class EnderecoRepository {
         return enderecoAlterado;
     }
 
-    public void excluiEndereco(Integer id) throws Exception {
+    public void excluiEndereco(Integer id) throws RegraDeNegocioException {
         Endereco enderecoRecuperado = listaEnderecos.stream()
                 .filter(endereco -> endereco.getIdEndereco().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Endereço não encontrado"));
+                .orElseThrow(() -> new RegraDeNegocioException("Endereço não encontrado"));
         listaEnderecos.remove(enderecoRecuperado);
     }
 

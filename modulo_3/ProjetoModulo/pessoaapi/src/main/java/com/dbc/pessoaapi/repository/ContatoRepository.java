@@ -1,6 +1,7 @@
 
 package com.dbc.pessoaapi.repository;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Contato;
 import com.dbc.pessoaapi.entity.Pessoa;
 import com.dbc.pessoaapi.entity.TipoContato;
@@ -21,17 +22,18 @@ public class ContatoRepository {
 
     }
 
-    public Contato create (Contato contato){
+    public Contato create (Integer idPessoa,Contato contato){
+        contato.setIdPessoa(idPessoa);
         contato.setIdContato(COUNTER.incrementAndGet());
         listaContatos.add(contato);
         return contato;
     }
 
-    public void delete(Integer id) throws Exception{
+    public void delete(Integer id) throws RegraDeNegocioException{
         Contato contatoRecuperado = listaContatos.stream()
                 .filter(contato -> contato.getIdContato().equals(id))
                 .findFirst()
-                .orElseThrow(() ->new Exception("Contato não encontrado"));
+                .orElseThrow(() ->new RegraDeNegocioException("Contato não encontrado"));
         listaContatos.remove(contatoRecuperado);
     }
 
@@ -44,11 +46,11 @@ public class ContatoRepository {
 
     }
 
-    public Contato editar(Integer id, Contato contato) throws Exception{
+    public Contato editar(Integer id, Contato contato) throws RegraDeNegocioException{
         Contato contatoAlterado = listaContatos.stream()
                 .filter(c -> c.getIdContato().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new Exception("Contato não encontrado"));
+                .orElseThrow(()-> new RegraDeNegocioException("Contato não encontrado"));
         contatoAlterado.setTipoContato(contato.getTipoContato());
         contatoAlterado.setNumero(contato.getNumero());
         contatoAlterado.setDescricao(contato.getDescricao());

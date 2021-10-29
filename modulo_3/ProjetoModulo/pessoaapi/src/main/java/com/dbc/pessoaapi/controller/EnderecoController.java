@@ -1,12 +1,16 @@
 package com.dbc.pessoaapi.controller;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Endereco;
 import com.dbc.pessoaapi.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/endereco")
 public class EnderecoController {
@@ -29,18 +33,19 @@ public class EnderecoController {
 
 
     @PostMapping("/criar/{idPessoa}")
-    public Endereco criarEnderecoPorIDPessoa (@PathVariable("idPessoa") Integer id, @RequestBody Endereco endereco){
+    public Endereco criarEnderecoPorIDPessoa ( @PathVariable("idPessoa") Integer id,
+                                               @Valid @RequestBody Endereco endereco) throws RegraDeNegocioException {
         return enderecoService.criarEnderecoPorIDPessoa(id, endereco);
     }
 
     @PutMapping("/editar/{idEndereco}")
     public Endereco editar(@PathVariable ("idEndereco") Integer id,
-            @RequestBody Endereco endereco) throws Exception{
+            @Valid @RequestBody Endereco endereco) throws RegraDeNegocioException{
         return enderecoService.editar(id, endereco);
     }
 
     @DeleteMapping("/excluir/{idEndereco}")
-    public void excluiEndereco(@PathVariable("idEndereco") Integer id) throws Exception{
+    public void excluiEndereco(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException{
         enderecoService.excluiEndereco(id);
     }
 

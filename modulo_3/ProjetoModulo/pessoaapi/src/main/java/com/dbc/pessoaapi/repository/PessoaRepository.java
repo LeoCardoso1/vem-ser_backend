@@ -1,5 +1,6 @@
 package com.dbc.pessoaapi.repository;
 
+import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.entity.Pessoa;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,22 +37,22 @@ public class PessoaRepository {
     }
 
     public Pessoa update(Integer id,
-                         Pessoa pessoaAtualizar) throws Exception {
+                         Pessoa pessoaAtualizar) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = listaPessoas.stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Pessoa não econtrada"));
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
         pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
         pessoaRecuperada.setNome(pessoaAtualizar.getNome());
         pessoaRecuperada.setDataNascimento(pessoaAtualizar.getDataNascimento());
         return pessoaRecuperada;
     }
 
-    public void delete(Integer id) throws Exception {
+    public void delete(Integer id) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = listaPessoas.stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new Exception("Pessoa não econtrada"));
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
         listaPessoas.remove(pessoaRecuperada);
     }
 
@@ -59,5 +60,12 @@ public class PessoaRepository {
         return listaPessoas.stream()
                 .filter(pessoa -> StringUtils.containsAnyIgnoreCase(pessoa.getNome(), nome.toUpperCase()))
                 .collect(Collectors.toList());
+    }
+
+    public Pessoa getById(Integer id) throws RegraDeNegocioException {
+        return listaPessoas.stream()
+                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
     }
 }
