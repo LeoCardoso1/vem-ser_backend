@@ -1,15 +1,17 @@
 package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
-import com.dbc.pessoaapi.entity.Endereco;
+import com.dbc.pessoaapi.entity.EnderecoEntity;
 import com.dbc.pessoaapi.repository.EnderecoRepository;
 import com.dbc.pessoaapi.repository.PessoaRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class EnderecoService {
 
     @Autowired
@@ -18,19 +20,19 @@ public class EnderecoService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public List<Endereco> list(){return enderecoRepository.list();}
+    public List<EnderecoEntity> list(){return enderecoRepository.list();}
 
-    public Endereco buscaEndereco(Integer id) throws Exception{return enderecoRepository.buscaEndreco(id);}
+    public EnderecoEntity buscaEndereco(Integer id) throws Exception{return enderecoRepository.buscaEndreco(id);}
 
-    public List<Endereco> listarEnderecosPessoa(Integer id)
+    public List<EnderecoEntity> listarEnderecosPessoa(Integer id)
     {return enderecoRepository.listarEnderecosPessoa(id);}
 
-    public Endereco criarEnderecoPorIDPessoa(Integer id, Endereco endereco) throws RegraDeNegocioException
+    public EnderecoEntity criarEnderecoPorIDPessoa(Integer id, EnderecoEntity endereco) throws RegraDeNegocioException
     {   pessoaRepository.getById(id);
         endereco.setIdPessoa(id);
         return enderecoRepository.criarEnderecoPorIDPessoa(endereco);}
 
-    public Endereco editar(Integer id, Endereco endereco) throws RegraDeNegocioException{
+    public EnderecoEntity editar(Integer id, EnderecoEntity endereco) throws RegraDeNegocioException{
         return enderecoRepository.editar(id, endereco);
     }
 

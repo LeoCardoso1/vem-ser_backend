@@ -1,11 +1,9 @@
 package com.dbc.pessoaapi.repository;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
-import com.dbc.pessoaapi.entity.Pessoa;
+import com.dbc.pessoaapi.entity.PessoaEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,29 +14,29 @@ import java.util.stream.Collectors;
 
 @Repository
 public class PessoaRepository {
-    private static List<Pessoa> listaPessoas = new ArrayList<>();
+    private static List<PessoaEntity> listaPessoas = new ArrayList<>();
     private AtomicInteger COUNTER = new AtomicInteger();
 
     public PessoaRepository() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //18/10/2020
-        listaPessoas.add(new Pessoa(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
-        listaPessoas.add(new Pessoa(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
-        listaPessoas.add(new Pessoa(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
+        listaPessoas.add(new PessoaEntity(COUNTER.incrementAndGet() /*1*/, "Maicon Gerardi", LocalDate.parse("10/10/1990", formatter), "12345678910"));
+        listaPessoas.add(new PessoaEntity(COUNTER.incrementAndGet() /*2*/, "Charles Pereira", LocalDate.parse("08/05/1985", formatter), "12345678911"));
+        listaPessoas.add(new PessoaEntity(COUNTER.incrementAndGet() /*3*/, "Marina Oliveira", LocalDate.parse("30/03/1970", formatter), "12345678912"));
     }
 
-    public Pessoa create(Pessoa pessoa) {
-        pessoa.setIdPessoa(COUNTER.incrementAndGet());
-        listaPessoas.add(pessoa);
-        return pessoa;
+    public PessoaEntity create(PessoaEntity pessoaEntity) {
+        pessoaEntity.setIdPessoa(COUNTER.incrementAndGet());
+        listaPessoas.add(pessoaEntity);
+        return pessoaEntity;
     }
 
-    public List<Pessoa> list() {
+    public List<PessoaEntity> list() {
         return listaPessoas;
     }
 
-    public Pessoa update(Integer id,
-                         Pessoa pessoaAtualizar) throws RegraDeNegocioException {
-        Pessoa pessoaRecuperada = listaPessoas.stream()
+    public PessoaEntity update(Integer id,
+                               PessoaEntity pessoaAtualizar) throws RegraDeNegocioException {
+        PessoaEntity pessoaRecuperada = listaPessoas.stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
@@ -49,20 +47,20 @@ public class PessoaRepository {
     }
 
     public void delete(Integer id) throws RegraDeNegocioException {
-        Pessoa pessoaRecuperada = listaPessoas.stream()
+        PessoaEntity pessoaRecuperada = listaPessoas.stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
         listaPessoas.remove(pessoaRecuperada);
     }
 
-    public List<Pessoa> listByName(String nome) {
+    public List<PessoaEntity> listByName(String nome) {
         return listaPessoas.stream()
                 .filter(pessoa -> StringUtils.containsAnyIgnoreCase(pessoa.getNome(), nome.toUpperCase()))
                 .collect(Collectors.toList());
     }
 
-    public Pessoa getById(Integer id) throws RegraDeNegocioException {
+    public PessoaEntity getById(Integer id) throws RegraDeNegocioException {
         return listaPessoas.stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()

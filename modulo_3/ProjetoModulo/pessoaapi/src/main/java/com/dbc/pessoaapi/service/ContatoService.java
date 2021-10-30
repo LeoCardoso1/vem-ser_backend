@@ -1,14 +1,13 @@
 package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
-import com.dbc.pessoaapi.entity.Contato;
+import com.dbc.pessoaapi.entity.ContatoEntity;
 import com.dbc.pessoaapi.repository.ContatoRepository;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.awt.*;
 
 @Service
 public class ContatoService {
@@ -19,20 +18,20 @@ public class ContatoService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public Contato create(Integer idPessoa, Contato contato) throws RegraDeNegocioException{
+    public ContatoEntity create(Integer idPessoa, ContatoEntity contato) throws RegraDeNegocioException{
         pessoaRepository.getById(idPessoa);
         return contatoRepository.create(idPessoa, contato);
     }
 
-    public List<Contato> list() {return contatoRepository.list();}
+    public List<ContatoEntity> list() {return contatoRepository.list();}
 
     public void delete(Integer id) throws RegraDeNegocioException{
         contatoRepository.delete(id);
     }
 
-    public List<Contato> listByContact(Integer id){return contatoRepository.listByContact(id);}
+    public List<ContatoEntity> listByContact(Integer id){return contatoRepository.listByContact(id);}
 
-    public Contato editar(Integer id, Contato contato) throws RegraDeNegocioException {
+    public ContatoEntity editar(Integer id, ContatoEntity contato) throws RegraDeNegocioException {
         return contatoRepository.editar(id, contato);
     }
 }
