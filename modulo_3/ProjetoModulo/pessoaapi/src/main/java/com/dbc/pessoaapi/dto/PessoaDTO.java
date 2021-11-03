@@ -18,4 +18,7 @@ public class PessoaDTO {
 
     @NotNull
     private LocalDate dataNascimento;
+
+    @NotNull
+    private String email;
 }

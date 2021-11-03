@@ -5,13 +5,16 @@ import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
 import com.dbc.pessoaapi.service.PessoaService;
+import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -50,9 +53,10 @@ public class PessoaController {
     }
 
 
-    @PutMapping("/{idPessoa}")
+    @PutMapping("/editar/{idPessoa}")
     public PessoaDTO update(@PathVariable("idPessoa") Integer id,
-                               @Valid @RequestBody PessoaCreateDTO pessoaCreateDTO) throws RegraDeNegocioException {
+                               @Valid @RequestBody PessoaCreateDTO pessoaCreateDTO) throws RegraDeNegocioException,
+            MessagingException, TemplateException, IOException {
         log.info("Iniciando edição de pessoa");
         PessoaDTO pessoaEditada = pessoaService.update(id, pessoaCreateDTO);
         log.info("Edição de pessoa feita com sucesso");
@@ -61,7 +65,8 @@ public class PessoaController {
 
 
     @DeleteMapping("/{idPessoa}")
-    public void delete(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException{
+    public void delete(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException, MessagingException,
+            TemplateException, IOException {
         log.info("Iniciando exclusão de pessoa");
         pessoaService.delete(id);
         log.info("Exclusão de pessoa feita com sucesso");

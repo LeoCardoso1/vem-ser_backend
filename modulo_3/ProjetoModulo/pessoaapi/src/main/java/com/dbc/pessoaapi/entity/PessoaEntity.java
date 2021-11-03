@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -19,18 +20,10 @@ public class PessoaEntity {
 
 
     private Integer idPessoa;
-
-    @NotEmpty
     private String nome;
-
-    @NotNull
-    @Past
     private LocalDate dataNascimento;
-
-    @NotEmpty
-    @NotNull
-    @Size(min = 11, max = 11)
     private String cpf;
+    private String email;
 
     @Override
     public String toString() {
