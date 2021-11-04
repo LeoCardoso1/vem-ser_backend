@@ -27,7 +27,7 @@ public class PessoaService {
         PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
         PessoaEntity pessoaCriada = pessoaRepository.create(pessoaEntity);
         PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaCriada, PessoaDTO.class);
-        emailService.enviarEmailSimples(pessoaDTO);
+//        emailService.enviarEmailSimples(pessoaDTO);
         return pessoaDTO;
     }
 
@@ -43,14 +43,14 @@ public class PessoaService {
         PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
         PessoaEntity pessoaAtualizada = pessoaRepository.update(id, pessoaEntity);
         PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaAtualizada, PessoaDTO.class);
-        emailService.enivarEmailAlteracao(pessoaDTO);
+//        emailService.enivarEmailAlteracao(pessoaDTO);
         return objectMapper.convertValue(pessoaAtualizada, PessoaDTO.class);
     }
 
     public void delete(Integer id) throws RegraDeNegocioException, MessagingException, TemplateException, IOException {
         PessoaEntity pessoaEntity = pessoaRepository.getById(id);
         pessoaRepository.delete(id);
-        emailService.enivarEmailExclusao(pessoaEntity);
+//        emailService.enivarEmailExclusao(pessoaEntity);
     }
 
     public List<PessoaDTO> listByName(String nome) {
