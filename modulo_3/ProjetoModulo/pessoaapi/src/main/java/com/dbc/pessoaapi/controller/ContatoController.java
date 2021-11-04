@@ -67,6 +67,7 @@ public class ContatoController {
     @ApiOperation(value = "Listar contatos por id de pessoa")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Listar contatos por id de pessoa"),
+            @ApiResponse(code = 400, message = "Pessoa não encontrada"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })

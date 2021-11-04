@@ -37,6 +37,7 @@ public class EnderecoController {
     @ApiOperation(value = "Busca um endereço")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna a lista de endereços"),
+            @ApiResponse(code = 400, message = "Endereço não encontrado"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
@@ -48,6 +49,7 @@ public class EnderecoController {
     @ApiOperation(value = "Retorna endereços da pessoa")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Retorna endereços da pessoa"),
+            @ApiResponse(code = 400, message = "Pessoa não encontrada"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
@@ -75,6 +77,7 @@ public class EnderecoController {
     @ApiOperation(value = "Edita endereço pelo id da pessoa")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Edita endereço pelo id da pessoa"),
+            @ApiResponse(code = 400, message = "Pessoa não encontrada"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
@@ -90,6 +93,7 @@ public class EnderecoController {
     @ApiOperation(value = "Exclui endereço pelo id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Exclui endereço pelo id"),
+            @ApiResponse(code = 400, message = "Endereço não encontrado"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })

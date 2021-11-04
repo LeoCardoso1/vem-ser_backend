@@ -73,6 +73,7 @@ public class PessoaController {
     @ApiOperation(value = "Edita uma pessoa")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Edita uma pessoa"),
+            @ApiResponse(code = 400, message = "Pessoa não encontrada"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
@@ -89,6 +90,7 @@ public class PessoaController {
     @ApiOperation(value = "Deleta uma pessoa")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Deleta uma pessoa"),
+            @ApiResponse(code = 400, message = "Pessoa não encontrada"),
             @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
