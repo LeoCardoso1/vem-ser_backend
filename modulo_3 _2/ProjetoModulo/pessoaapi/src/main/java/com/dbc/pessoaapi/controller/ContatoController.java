@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.controller;
 
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
+import com.dbc.pessoaapi.dto.ContatoCreateDTO;
 import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.entity.ContatoEntity;
 import com.dbc.pessoaapi.service.ContatoService;
@@ -35,7 +36,7 @@ public class ContatoController {
     })
     @PostMapping("/criar/{idPessoa}")
     public ContatoDTO create(@PathVariable("idPessoa") Integer idPessoa,
-                                @Valid @RequestBody ContatoEntity contato)throws RegraDeNegocioException{
+                                @Valid @RequestBody ContatoCreateDTO contatoCreateDTO)throws RegraDeNegocioException{
             log.info("Iniciando criação de contato");
             ContatoDTO contatoCriado = contatoService.create(idPessoa, contatoCreateDTO);
             log.info("Criação de contato feita com sucesso");
@@ -45,7 +46,7 @@ public class ContatoController {
     @ApiOperation(value = "Listar contatos")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Listar Contatos"),
-            @ApiResponse(code = 403, message = "Você não tem permissao para acessar esse recurso"),
+            @ApiResponse(code = 403, message = "Você não tem permissão para acessar esse recurso"),
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
     @GetMapping("/listar")
@@ -74,7 +75,7 @@ public class ContatoController {
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
     @GetMapping("/listar/pessoa")
-    public List<ContatoEntity> listByContact(@RequestParam("id") Integer id){return contatoService.listByContact(id);}
+    public List<ContatoDTO> listByPessoa(@RequestParam("id") Integer id){return contatoService.listByPessoa(id);}
 
 
     @ApiOperation(value = "Editar contato por id de contato")
@@ -85,10 +86,10 @@ public class ContatoController {
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
     @PutMapping("/editar/{idContato}")
-    public ContatoEntity update(@PathVariable("idContato") Integer id,
-                                @Valid @RequestBody ContatoEntity contato) throws RegraDeNegocioException {
+    public ContatoDTO update(@PathVariable("idContato") Integer id,
+                                @Valid @RequestBody ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         log.info("Iniciando edição de contato");
-        ContatoEntity contatoEditado = contatoService.editar(id, contato);
+        ContatoDTO contatoEditado = contatoService.update(id, contatoCreateDTO);
         log.info("Edição de contato feita com sucesso");
         return contatoEditado;
     }

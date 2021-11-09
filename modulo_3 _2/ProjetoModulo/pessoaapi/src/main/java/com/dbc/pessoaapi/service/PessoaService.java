@@ -23,12 +23,12 @@ public class PessoaService {
     private final ObjectMapper objectMapper;
     private final EmailService emailService;
 
-    public PessoaDTO create(PessoaCreateDTO pessoaCreateDTO) throws Exception {
+    public PessoaDTO create(PessoaCreateDTO pessoaCreateDTO)
+            throws RegraDeNegocioException, MessagingException, TemplateException, IOException {
         PessoaEntity pessoaEntity = objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
         PessoaEntity pessoaCriada = pessoaRepository.save(pessoaEntity);
-        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoaCriada, PessoaDTO.class);
-//        emailService.enviarEmailSimples(pessoaDTO);
-        return pessoaDTO;
+        return objectMapper.convertValue(pessoaCriada, PessoaDTO.class);
+        //        emailService.enviarEmailSimples(pessoaDTO);
     }
 
     public List<PessoaDTO> list() {
@@ -43,29 +43,29 @@ public class PessoaService {
         PessoaEntity entity = objectMapper.convertValue(pessoaCreateDTO, PessoaEntity.class);
         entity.setIdPessoa(id);
         PessoaEntity update = pessoaRepository.save(entity);
-        PessoaDTO dto = objectMapper.convertValue(update, PessoaDTO.class);
-        return dto;
+        return objectMapper.convertValue(update, PessoaDTO.class);
     }
 
     public PessoaEntity findById(Integer id) throws RegraDeNegocioException {
-        PessoaEntity entity = pessoaRepository.findById(id)
+        return pessoaRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("pessoa não encontrada"));
-        return entity;
     }
 
     public PessoaDTO getById(Integer id) throws RegraDeNegocioException {
         PessoaEntity entity = findById(id);
-        PessoaDTO dto = objectMapper.convertValue(entity, PessoaDTO.class);
-        return dto;
+        return objectMapper.convertValue(entity, PessoaDTO.class);
     }
     public void delete(Integer id) throws RegraDeNegocioException {
         PessoaEntity pessoaEntity = findById(id);
         pessoaRepository.delete(pessoaEntity);
     }
 
-//    public List<PessoaDTO> listByName(String nome) {
-//        return pessoaRepository.listByName(nome).stream()
-//                .map(pessoa-> objectMapper.convertValue(pessoa, PessoaDTO.class))
-//                .collect(Collectors.toList());
-//    }
+    public List<PessoaDTO> listByName(String nome) {
+        return pessoaRepository.findAll()
+                .stream()
+                .filter(pessoa -> pessoa.getNome().toLowerCase().contains(nome.toLowerCase()))
+                .collect(Collectors.toList()).stream()
+                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
 }
