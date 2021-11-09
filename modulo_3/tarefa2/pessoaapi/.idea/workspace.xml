@@ -4,7 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25fb0f3b-6b0f-4074-8764-ab276ee0cf9f" name="Changes" comment="" />
+    <list default="true" id="25fb0f3b-6b0f-4074-8764-ab276ee0cf9f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/HomeWork28-10.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/HomeWork2e3.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/Exceptions/CustomGlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/Exceptions/RegraDeNegocioException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/PessoaApiApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/client/DadosPessoaisClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/config/FeignConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/config/SimpleErrorDecode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/config/SpringFoxConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/controller/ContatoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/controller/DadosPessoaisController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/controller/EnderecoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/controller/PessoaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/controller/SwaggerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/ContatoCreateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/ContatoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/DadosPessoaisDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/PessoaCreateDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/PessoaDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/PessoaEDadosPessoaisDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/dto/Sexo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/entity/ContatoEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/entity/EnderecoEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/entity/PessoaEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/entity/TipoContato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/entity/TipoEndereco.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/repository/ContatoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/repository/EnderecoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/repository/PessoaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/service/ContatoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/service/DadosPessoaisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/service/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/service/EnderecoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/java/com/dbc/pessoaapi/service/PessoaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/resources/application-prd.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/resources/templates/email-template-alteracao.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/main/resources/templates/email-template-exclusao.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/ProjetoModulo/pessoaapi/src/test/java/com/dbc/pessoaapi/PessoaApiApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/tarefa1/HomeWork 1_1.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/tarefa1/HomeWork 1_2.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/tarefa2/pessoaapi/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/tarefa2/pessoaapi/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../modulo_3 _2/tarefa2/pessoaapi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ProjetoModulo/pessoaapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ProjetoModulo/pessoaapi/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +104,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ProjetoModulo/pessoaapi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -78,6 +136,7 @@
       <workItem from="1635389308750" duration="2117000" />
       <workItem from="1635424157964" duration="35810000" />
       <workItem from="1635525260220" duration="194000" />
+      <workItem from="1636484350584" duration="31000" />
     </task>
     <servers />
   </component>
