@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.controller;
 
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
+import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.entity.ContatoEntity;
 import com.dbc.pessoaapi.service.ContatoService;
 import io.swagger.annotations.ApiOperation;
@@ -33,10 +34,10 @@ public class ContatoController {
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
     @PostMapping("/criar/{idPessoa}")
-    public ContatoEntity create(@PathVariable("idPessoa") Integer idPessoa,
+    public ContatoDTO create(@PathVariable("idPessoa") Integer idPessoa,
                                 @Valid @RequestBody ContatoEntity contato)throws RegraDeNegocioException{
             log.info("Iniciando criação de contato");
-            ContatoEntity contatoCriado = contatoService.create(idPessoa, contato);
+            ContatoDTO contatoCriado = contatoService.create(idPessoa, contatoCreateDTO);
             log.info("Criação de contato feita com sucesso");
             return contatoCriado;
     }
@@ -48,7 +49,7 @@ public class ContatoController {
             @ApiResponse(code = 500, message = "Foi gerada uma excessão"),
     })
     @GetMapping("/listar")
-    public List<ContatoEntity> list(){return contatoService.list();}
+    public List<ContatoDTO> list(){return contatoService.list();}
 
 
     @ApiOperation(value = "Deletar contato por id de contato")

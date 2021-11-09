@@ -20,10 +20,10 @@ public class ContatoDTO {
     @ApiModelProperty("Tipo do contato - (1 - RESIDENCIAL, 2 - COMERCIAL)")
     private Integer tipoContato;
 
-    @Size(max = 13, min = 1, message = "deve ter no máximo 13 números")
+    @Size(max = 13, min = 1, message = "Telefone deve ter no máximo 13 números")
     @NotEmpty
     @NotBlank
-    @ApiModelProperty("Número do telefone, somente números")
+    @ApiModelProperty("Número do telefone, aceito apenas números")
     private String numero;
 
     @NotEmpty

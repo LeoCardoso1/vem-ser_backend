@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,12 @@ public class ContatoService {
         return contatoDTO;
     }
 
-    public List<ContatoRepository> list() {return contatoRepository.findAll();}
+    public List<ContatoDTO> list() {
+        return contatoRepository.findAll()
+                .stream()
+                .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+                .collect(Collectors.toList());
+    }
 
     public void delete(Integer id) throws RegraDeNegocioException{
         contatoRepository.delete(id);
@@ -42,13 +48,12 @@ public class ContatoService {
 
 //    public List<ContatoEntity> listByContact(Integer id){return contatoRepository.listByContact(id);}
 
-    public ContatoEntity editar(Integer id, ContatoEntity contato) throws RegraDeNegocioException {
+    public ContatoDTO update(Integer idContato, ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         ContatoEntity contatoEntity = findById(idContato);
         ContatoEntity entity = objectMapper.convertValue(contatoCreateDTO, ContatoEntity.class);
         entity.setIdPessoa(contatoEntity.getIdPessoa());
         entity.setIdContato(idContato);
         ContatoEntity update = contatoRepository.save(entity);
-        ContatoDTO contatoDTO = objectMapper.convertValue(update, ContatoDTO.class);
-        return contatoDTO;
+        return objectMapper.convertValue(update, ContatoDTO.class);
     }
 }

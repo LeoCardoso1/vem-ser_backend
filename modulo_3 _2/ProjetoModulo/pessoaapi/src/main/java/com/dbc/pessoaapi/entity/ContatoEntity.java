@@ -3,9 +3,6 @@ package com.dbc.pessoaapi.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 
 @Data
@@ -23,20 +20,14 @@ public class ContatoEntity {
     @Column(name= "id_pessoa")
     private Integer idPessoa;
 
-    @Column(name="tipo")
     @Enumerated(EnumType.ORDINAL)
-    @NotNull
+    @Column(name="tipo")
     private TipoContato tipoContato;
 
     @Column(name="numero")
-    @NotNull
-    @NotEmpty
-    @Size(max = 13)
     private String numero;
 
     @Column(name="descricao")
-    @NotNull
-    @NotEmpty
     private String descricao;
 
     @Override
