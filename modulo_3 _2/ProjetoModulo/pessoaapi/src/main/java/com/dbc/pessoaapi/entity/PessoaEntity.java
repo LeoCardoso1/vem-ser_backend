@@ -1,19 +1,19 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name="PESSOA")
+
 public class PessoaEntity {
 
     @Id
@@ -34,13 +34,16 @@ public class PessoaEntity {
     @Column(name="email")
     private String email;
 
-    @Override
-    public String toString() {
-        return "Pessoa{" +
-                "idPessoa=" + idPessoa +
-                ", nome='" + nome + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", cpf='" + cpf + '\'' +
-                '}';
-    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "pessoaEntity", fetch = FetchType.LAZY)
+    private Set<ContatoEntity> contatos;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name="Pessoa_X_Pessoa_Endereco",
+            joinColumns = @JoinColumn(name="id_pessoa"),
+            inverseJoinColumns = @JoinColumn(name="id_endereco")
+    )
+    private Set<EnderecoEntity> enderecos;
 }

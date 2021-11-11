@@ -1,6 +1,8 @@
 package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
+import com.dbc.pessoaapi.dto.ContatoDTO;
+import com.dbc.pessoaapi.dto.PessoaComContatoDTO;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
@@ -66,6 +68,24 @@ public class PessoaService {
                 .filter(pessoa -> pessoa.getNome().toLowerCase().contains(nome.toLowerCase()))
                 .collect(Collectors.toList()).stream()
                 .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<PessoaComContatoDTO> listByPessoaComContato(){
+        return pessoaRepository.findAll()
+                .stream()
+                .map(pessoa -> {
+                    PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
+                    PessoaComContatoDTO pessoaComContatoDTO = new PessoaComContatoDTO();
+                    pessoaComContatoDTO.setPessoa(pessoaDTO);
+                    pessoaComContatoDTO.setContatos(
+                            pessoa.getContatos()
+                                    .stream()
+                                    .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+                                    .collect(Collectors.toList())
+                    );
+                    return pessoaComContatoDTO;
+                })
                 .collect(Collectors.toList());
     }
 }

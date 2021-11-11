@@ -1,6 +1,7 @@
 package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
+import com.dbc.pessoaapi.dto.PessoaComContatoDTO;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
@@ -124,6 +125,14 @@ public class PessoaController {
             @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end){
         return pessoaRepository.findByDataNascimentoBetween(start, end);
     }
+
+    @ApiOperation("Listando todas as pessoas e contatos")
+    @GetMapping("pessoas-com-contatos")
+    public List<PessoaComContatoDTO> listByPessoaComContatos(){
+        return pessoaService.listByPessoaComContato();
+    }
+
+
 
 
 }

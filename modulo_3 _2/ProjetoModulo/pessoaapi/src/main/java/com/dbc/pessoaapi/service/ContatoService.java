@@ -22,7 +22,7 @@ public class ContatoService {
     public ContatoDTO create(Integer idPessoa, ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         pessoaService.findById(idPessoa);
         ContatoEntity contatoEntity = objectMapper.convertValue(contatoCreateDTO, ContatoEntity.class);
-        contatoEntity.setIdPessoa(idPessoa);
+//        contatoEntity.setIdPessoa(idPessoa);
         ContatoEntity contatoCriado = contatoRepository.save(contatoEntity);
         return objectMapper.convertValue(contatoCriado, ContatoDTO.class);
     }
@@ -49,7 +49,7 @@ public class ContatoService {
     public ContatoDTO update(Integer id, ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         findById(id);
         ContatoEntity contatoEntity = objectMapper.convertValue(contatoCreateDTO, ContatoEntity.class);
-        contatoEntity.setIdPessoa(contatoEntity.getIdPessoa());
+//        contatoEntity.setIdPessoa(contatoEntity.getIdPessoa());
         contatoEntity.setIdContato(id);
         ContatoEntity update = contatoRepository.save(contatoEntity);
         return objectMapper.convertValue(update, ContatoDTO.class);

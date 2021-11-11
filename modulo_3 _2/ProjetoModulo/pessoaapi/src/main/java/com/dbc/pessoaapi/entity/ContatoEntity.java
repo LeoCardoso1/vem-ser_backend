@@ -1,14 +1,18 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "CONTATO")
+
 public class ContatoEntity {
 
     @Id
@@ -17,8 +21,8 @@ public class ContatoEntity {
     @Column(name = "id_contato")
     private Integer idContato;
 
-    @Column(name= "id_pessoa")
-    private Integer idPessoa;
+//    @Column(name= "id_pessoa")
+//    private Integer idPessoa;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name="tipo")
@@ -30,14 +34,11 @@ public class ContatoEntity {
     @Column(name="descricao")
     private String descricao;
 
-    @Override
-    public String toString() {
-        return "Contato{" +
-                "idContato=" + idContato +
-                ", idPessoa=" + idPessoa +
-                ", tipoContato=" + tipoContato +
-                ", numero='" + numero + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
-    }
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa", referencedColumnName = "id_pessoa")
+    private PessoaEntity pessoaEntity;
+
+
+
 }

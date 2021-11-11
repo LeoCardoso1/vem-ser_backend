@@ -5,6 +5,7 @@ import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.dto.ContatoCreateDTO;
 import com.dbc.pessoaapi.dto.ContatoDTO;
 import com.dbc.pessoaapi.entity.ContatoEntity;
+import com.dbc.pessoaapi.repository.ContatoRepository;
 import com.dbc.pessoaapi.service.ContatoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -25,7 +26,7 @@ import java.util.List;
 @RequestMapping("/contato")
 public class ContatoController {
 
-    final private ContatoService contatoService;
+    private final ContatoService contatoService;
 
     @ApiOperation(value = "Criar contato por id de pessoa")
     @ApiResponses(value = {
@@ -93,4 +94,6 @@ public class ContatoController {
         log.info("Edição de contato feita com sucesso");
         return contatoEditado;
     }
+
+
 }

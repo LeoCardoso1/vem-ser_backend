@@ -1,11 +1,13 @@
 package com.dbc.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -19,15 +21,15 @@ public class EnderecoEntity {
     @Column(name = "id_endereco")
     private Integer idEndereco;
 
-    @Column(name= "id_pessoa")
-    private Integer idPessoa;
+//    @Column(name= "id_pessoa")
+//    private Integer idPessoa;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name="tipo")
     private TipoEndereco tipo;
 
-    @Column(name="logadouro")
-    private String logadouro;
+    @Column(name="logradouro")
+    private String logradouro;
 
     @Column(name= "numero")
     private Integer numero;
@@ -47,4 +49,7 @@ public class EnderecoEntity {
     @Column(name= "pais")
     private String pais;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "enderecos")
+    private Set<PessoaEntity> pessoas;
 }
