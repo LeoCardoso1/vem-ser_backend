@@ -108,36 +108,36 @@ public class PessoaController {
     }
 
     @ApiOperation("Buscando pessoas no banco de dados")
-    @GetMapping("find-by-data")
+    @GetMapping("/find-by-data")
     public List<PessoaEntity> findByNomeContainingIgnoreCase(@RequestParam("nome") String nome){
         return pessoaRepository.findByNomeContainingIgnoreCase(nome);
     }
 
     @ApiOperation("Buscando pessoas pelo cpf no banco de dados")
-    @GetMapping("find-by-cpf")
+    @GetMapping("/find-by-cpf")
     public List<PessoaEntity> findByCpf(@RequestParam("cpf") String cpf){
         return pessoaRepository.findByCpf(cpf);
     }
 
     @ApiOperation("Buscando pessoas no intervalo informado")
-    @GetMapping("find-by-nascimento")
+    @GetMapping("/find-by-nascimento")
     public List<PessoaEntity> findByDataNascimentoBetween(
             @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
             @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end){
         return pessoaRepository.findByDataNascimentoBetween(start, end);
     }
 
-//    @ApiOperation("Listando todas as pessoas e contatos")
-//    @GetMapping("pessoas-com-contatos")
-//    public List<PessoaComContatoDTO> listByPessoaComContatos(@RequestParam(value = "id", required = false) Integer id){
-//        return pessoaService.listByPessoaComContato(id);
-//    }
-//
-//    @ApiOperation(("Listando todas as pessoas e endereços"))
-//    @GetMapping("pessoas-com-enderecos")
-//    public List<PessoaComEnderecoDTO> listByPessoaComEnderecos(@RequestParam(value = "id", required = false)Integer id){
-//        return pessoaService.listByPessoaComEndereco(id);
-//    }
+    @ApiOperation("Listando todas as pessoas e contatos")
+    @GetMapping("/pessoas-com-contatos")
+    public List<PessoaComContatoDTO> listByPessoaComContatos(@RequestParam(value = "id", required = false) Integer id){
+        return pessoaService.listByPessoaComContato(id);
+    }
+
+    @ApiOperation(("Listando todas as pessoas e endereços"))
+    @GetMapping("pessoas-com-enderecos")
+    public List<PessoaComEnderecoDTO> listByPessoaComEnderecos(@RequestParam(value = "id", required = false)Integer id){
+        return pessoaService.listByPessoaComEndereco(id);
+    }
 
 
 

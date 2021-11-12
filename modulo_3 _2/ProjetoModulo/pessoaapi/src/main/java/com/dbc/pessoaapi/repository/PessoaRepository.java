@@ -17,6 +17,7 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Integer> {
 
     List<PessoaEntity> findByDataNascimentoBetween(LocalDate start, LocalDate end);
 
+
     @Query("SELECT P " +
             "FROM PESSOA P " +
             "WHERE P.dataNascimento BETWEEN :start AND :end")
