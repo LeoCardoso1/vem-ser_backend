@@ -1,10 +1,7 @@
 package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
-import com.dbc.pessoaapi.dto.ContatoDTO;
-import com.dbc.pessoaapi.dto.PessoaComContatoDTO;
-import com.dbc.pessoaapi.dto.PessoaCreateDTO;
-import com.dbc.pessoaapi.dto.PessoaDTO;
+import com.dbc.pessoaapi.dto.*;
 import com.dbc.pessoaapi.entity.PessoaEntity;
 import com.dbc.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -71,21 +68,73 @@ public class PessoaService {
                 .collect(Collectors.toList());
     }
 
-    public List<PessoaComContatoDTO> listByPessoaComContato(){
-        return pessoaRepository.findAll()
-                .stream()
-                .map(pessoa -> {
-                    PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
-                    PessoaComContatoDTO pessoaComContatoDTO = new PessoaComContatoDTO();
-                    pessoaComContatoDTO.setPessoa(pessoaDTO);
-                    pessoaComContatoDTO.setContatos(
-                            pessoa.getContatos()
-                                    .stream()
-                                    .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
-                                    .collect(Collectors.toList())
-                    );
-                    return pessoaComContatoDTO;
-                })
-                .collect(Collectors.toList());
-    }
+//    public List<PessoaComContatoDTO> listByPessoaComContato(Integer id){
+//        if(id != null) {
+//            return pessoaRepository.findAll()
+//                    .stream()
+//                    .filter(pessoaEntity -> pessoaEntity.getIdPessoa().equals(id))
+//                    .map(pessoa -> {
+//                        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
+//                        PessoaComContatoDTO pessoaComContatoDTO = new PessoaComContatoDTO();
+//                        pessoaComContatoDTO.setPessoa(pessoaDTO);
+//                        pessoaComContatoDTO.setContatos(
+//                                pessoa.getContatos()
+//                                        .stream()
+//                                        .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+//                                        .collect(Collectors.toList())
+//                        );
+//                        return pessoaComContatoDTO;
+//                    })
+//                    .collect(Collectors.toList());
+//        }return pessoaRepository.findAll()
+//                    .stream()
+//                    .map(pessoa -> {
+//                        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
+//                        PessoaComContatoDTO pessoaComContatoDTO = new PessoaComContatoDTO();
+//                        pessoaComContatoDTO.setPessoa(pessoaDTO);
+//                        pessoaComContatoDTO.setContatos(
+//                              pessoa.getContatos()
+//                                     .stream()
+//                                     .map(contato -> objectMapper.convertValue(contato, ContatoDTO.class))
+//                                     .collect(Collectors.toList())
+//                    );
+//                        return pessoaComContatoDTO;
+//                })
+//                     .collect(Collectors.toList());
+//    }
+//
+//    public List <PessoaComEnderecoDTO> listByPessoaComEndereco(Integer id) {
+//        if (id != null) {
+//            return pessoaRepository.findAll()
+//                    .stream()
+//                    .filter(pessoaEntity -> pessoaEntity.getIdPessoa().equals(id))
+//                    .map(pessoa -> {
+//                        PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
+//                        PessoaComEnderecoDTO pessoaComEnderecoDTO = new PessoaComEnderecoDTO();
+//                        pessoaComEnderecoDTO.setPessoa(pessoaDTO);
+//                        pessoaComEnderecoDTO.setEnderecos(
+//                                pessoa.getEnderecos()
+//                                        .stream()
+//                                        .map(endereco -> objectMapper.convertValue(endereco, EnderecoDTO.class))
+//                                        .collect(Collectors.toList())
+//                        );
+//                        return pessoaComEnderecoDTO;
+//                    })
+//                    .collect(Collectors.toList());
+//        }return pessoaRepository.findAll()
+//                .stream()
+//                .map(pessoa -> {
+//                    PessoaDTO pessoaDTO = objectMapper.convertValue(pessoa, PessoaDTO.class);
+//                    PessoaComEnderecoDTO pessoaComEnderecoDTO = new PessoaComEnderecoDTO();
+//                    pessoaComEnderecoDTO.setPessoa(pessoaDTO);
+//                    pessoaComEnderecoDTO.setEnderecos(
+//                            pessoa.getEnderecos()
+//                                    .stream()
+//                                    .map(endereco -> objectMapper.convertValue(endereco, EnderecoDTO.class))
+//                                    .collect(Collectors.toList())
+//                    );
+//                    return pessoaComEnderecoDTO;
+//                })
+//                .collect(Collectors.toList());
+//    }
 }

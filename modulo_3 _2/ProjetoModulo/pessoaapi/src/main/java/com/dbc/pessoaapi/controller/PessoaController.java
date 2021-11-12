@@ -2,6 +2,7 @@ package com.dbc.pessoaapi.controller;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
 import com.dbc.pessoaapi.dto.PessoaComContatoDTO;
+import com.dbc.pessoaapi.dto.PessoaComEnderecoDTO;
 import com.dbc.pessoaapi.dto.PessoaCreateDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
@@ -126,11 +127,19 @@ public class PessoaController {
         return pessoaRepository.findByDataNascimentoBetween(start, end);
     }
 
-    @ApiOperation("Listando todas as pessoas e contatos")
-    @GetMapping("pessoas-com-contatos")
-    public List<PessoaComContatoDTO> listByPessoaComContatos(){
-        return pessoaService.listByPessoaComContato();
-    }
+//    @ApiOperation("Listando todas as pessoas e contatos")
+//    @GetMapping("pessoas-com-contatos")
+//    public List<PessoaComContatoDTO> listByPessoaComContatos(@RequestParam(value = "id", required = false) Integer id){
+//        return pessoaService.listByPessoaComContato(id);
+//    }
+//
+//    @ApiOperation(("Listando todas as pessoas e endereços"))
+//    @GetMapping("pessoas-com-enderecos")
+//    public List<PessoaComEnderecoDTO> listByPessoaComEnderecos(@RequestParam(value = "id", required = false)Integer id){
+//        return pessoaService.listByPessoaComEndereco(id);
+//    }
+
+
 
 
 
