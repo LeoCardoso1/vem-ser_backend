@@ -134,7 +134,7 @@ public class PessoaController {
     }
 
     @ApiOperation(("Listando todas as pessoas e endereços"))
-    @GetMapping("pessoas-com-enderecos")
+    @GetMapping("/pessoas-com-enderecos")
     public List<PessoaComEnderecoDTO> listByPessoaComEnderecos(@RequestParam(value = "id", required = false)Integer id){
         return pessoaService.listByPessoaComEndereco(id);
     }
