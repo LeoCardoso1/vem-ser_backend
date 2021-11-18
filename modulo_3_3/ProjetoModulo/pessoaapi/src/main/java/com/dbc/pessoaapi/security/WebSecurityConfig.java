@@ -3,6 +3,7 @@ package com.dbc.pessoaapi.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,8 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/auth").permitAll()
-//                .antMatchers("/contato").permitAll()
-
+                .antMatchers(HttpMethod.GET, "/pessoa/**", "/contato/**", "/endereco/**").hasAnyRole("MARKETING", "USUARIO")
+                .antMatchers("/pessoa/**", "/contato/**", "/endereco/**").hasRole("USUARIO")
+                .antMatchers("/**").hasRole("ADMIN")
+                .antMatchers("/auth/create").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
                 //filtro de autenticação...
