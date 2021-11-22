@@ -1,0 +1,61 @@
+use vemserdbc
+db.Disney.insertOne({nome: 'Rei Leão', data_lancamento: '1994', protagonista: 'Simba'})
+{ acknowledged: true,
+  insertedId: ObjectId("619c1bf474cd40fe70f7ac93") }
+  ////////////////////////////////////////////////////////////////////////////////////////
+  
+ db.Disney.insertMany([{nome: 'Aladdin', data_lancamento: '1992', protagonista: 'Aladdin'},
+  {nome: 'Pequena Sereia', data_lancamento: '1989', protagonista: 'Ariel'}])
+  { acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("619c1f9c74cd40fe70f7ac94"),
+     '1': ObjectId("619c1f9c74cd40fe70f7ac95") } }
+     
+ db.Disney.insertMany([{nome: 'Oliver e Sua Turma', data_lancamento: '1989', protagonista: 'Oliver'},
+ {nome: 'Tarzan', data_lancamento: '1999', protagonista: 'Tarzan'}])
+ { acknowledged: true,
+  insertedIds: 
+   { '0': ObjectId("619c203674cd40fe70f7ac96"),
+     '1': ObjectId("619c203674cd40fe70f7ac97") } }
+     
+//////////////////////////////////////////////////////////////////////////////////////////
+
+db.Disney.find()
+{ _id: ObjectId("619c1bf474cd40fe70f7ac93"),
+  nome: 'Rei Leão',
+  data_lancamento: '1994',
+  protagonista: 'Simba' }
+{ _id: ObjectId("619c1f9c74cd40fe70f7ac94"),
+  nome: 'Aladdin',
+  data_lancamento: '1992',
+  protagonista: 'Aladdin' }
+{ _id: ObjectId("619c1f9c74cd40fe70f7ac95"),
+  nome: 'Pequena Sereia',
+  data_lancamento: '1989',
+  protagonista: 'Ariel' }
+{ _id: ObjectId("619c203674cd40fe70f7ac96"),
+  nome: 'Oliver e Sua Turma',
+  data_lancamento: '1989',
+  protagonista: 'Oliver' }
+{ _id: ObjectId("619c203674cd40fe70f7ac97"),
+  nome: 'Tarzan',
+  data_lancamento: '1999',
+  protagonista: 'Tarzan' }
+  
+  ////////////////////////////////////////////////////////////////////////////////////////////
+  
+  db.Disney.find({'data_lancamento' : '1989'})
+{ _id: ObjectId("619c1f9c74cd40fe70f7ac95"),
+  nome: 'Pequena Sereia',
+  data_lancamento: '1989',
+  protagonista: 'Ariel' }
+{ _id: ObjectId("619c203674cd40fe70f7ac96"),
+  nome: 'Oliver e Sua Turma',
+  data_lancamento: '1989',
+  protagonista: 'Oliver' }
+  
+  /////////////////////////////////////////////////////////////////////////////////////////////
+  
+  db.Disney.deleteOne({ 'protagonista': 'Ariel' })
+{ acknowledged: true, deletedCount: 1 }
+
