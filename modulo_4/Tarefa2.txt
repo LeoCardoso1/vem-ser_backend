@@ -1,0 +1,184 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+-- Find em todos os Hotéis em Canoas
+
+db.Hoteis.find({"cidade": "Canoas"})
+
+{ _id: ObjectId("619d8c4cf07be165f0b85eba"),
+  nome: 'Canoas Parque Hotel',
+  logradouro: 'Avenida Getúlio Vargas',
+  numero: 7421,
+  cep: '92010011',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '201', '203' ],
+  reservas: [ '5' ] }
+
+{ _id: ObjectId("619d8c4cf07be165f0b85ebb"),
+  nome: 'Life Hotel',
+  logradouro: 'Avenida Guilhereme Schell',
+  numero: 2504,
+  cep: '92200654',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '205', '208' ],
+  reservas: [ '6', '7' ] }
+
+{ _id: ObjectId("619d8c4cf07be165f0b85ebc"),
+  nome: 'Canoas Hotel Castel',
+  logradouro: 'Rua das Acácias',
+  numero: 50,
+  cep: '92410010',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '204', '209' ],
+  reservas: [ '8', '9', '10' ] }
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+  -- Find em Hotéis de Canoas que ficam em Avenidas
+
+  db.Hoteis.find({"logradouro": /^A/, "cidade": "Canoas" })
+
+{ _id: ObjectId("619d8c4cf07be165f0b85eba"),
+  nome: 'Canoas Parque Hotel',
+  logradouro: 'Avenida Getúlio Vargas',
+  numero: 7421,
+  cep: '92010011',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '201', '203' ],
+  reservas: [ '5' ] }
+
+{ _id: ObjectId("619d8c4cf07be165f0b85ebb"),
+  nome: 'Life Hotel',
+  logradouro: 'Avenida Guilhereme Schell',
+  numero: 2504,
+  cep: '92200654',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '205', '208' ],
+  reservas: [ '6', '7' ] }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  -- Find in em Hotéis que tem quartos 101 e 102
+
+  db.Hoteis.find({quartos:{$in: ["101", "102"]}})
+
+{ _id: ObjectId("619d494687d13bc40e7b178d"),
+  nome: 'São Rafael',
+  logradouro: 'Avenida Alberto Bins',
+  numero: 514,
+  cep: '90030140',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ '101', '102' ],
+  reservas: [ '1', '2' ] }
+
+{ _id: ObjectId("619d4adbf07be165f0b85eaa"),
+  nome: 'Master Cosmopolitan',
+  logradouro: 'Rua Félix da Cunha',
+  numero: 712,
+  cep: '90570001',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ '101', '102' ],
+  reservas: [ '3', '4' ] }
+
+{ _id: ObjectId("619d51e6f07be165f0b85eb9"),
+  nome: 'Master Express Grande Hotel',
+  logradouro: 'Rua Riachuelo',
+  numero: 1070,
+  cep: '90010270',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ '101', '102' ],
+  reservas: [ '4', '5' ] }
+
+  //////////////////////////////////////////////////////////////////////////////////
+
+  -- Hotéis que tem a reserva 5, 6 ou 10
+
+  db.Hoteis.find({$or: [{"reservas": "5"}, {"reservas": "6"}, {"reservas": "10"}]})
+
+{ _id: ObjectId("619d51e6f07be165f0b85eb9"),
+  nome: 'Master Express Grande Hotel',
+  logradouro: 'Rua Riachuelo',
+  numero: 1070,
+  cep: '90010270',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ '101', '102' ],
+  reservas: [ '4', '5' ] }
+
+{ _id: ObjectId("619d8c4cf07be165f0b85eba"),
+  nome: 'Canoas Parque Hotel',
+  logradouro: 'Avenida Getúlio Vargas',
+  numero: 7421,
+  cep: '92010011',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '201', '203' ],
+  reservas: [ '5' ] }
+
+{ _id: ObjectId("619d8c4cf07be165f0b85ebb"),
+  nome: 'Life Hotel',
+  logradouro: 'Avenida Guilhereme Schell',
+  numero: 2504,
+  cep: '92200654',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '205', '208' ],
+  reservas: [ '6', '7' ] }
+
+{ _id: ObjectId("619d8c4cf07be165f0b85ebc"),
+  nome: 'Canoas Hotel Castel',
+  logradouro: 'Rua das Acácias',
+  numero: 50,
+  cep: '92410010',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ '204', '209' ],
+  reservas: [ '8', '9', '10' ] }
+
+///////////////////////////////////////////////////////////////////////////////////
+
+-- Setando novos dados do Hotel São Rafael
+
+db.Hoteis.updateOne({nome: "São Rafael"},
+    {
+      $set: {"nome": "São Rafael",
+    "logradouro": "Avenida Alípio Bonifácio",
+    "numero": 5134,
+    "cep": "90030140",
+    "cidade": "Porto Alegre",
+    "estado": "RS",
+    "quartos": ["101", "102"],
+    "reservas": ["1", "2"]}
+    })
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+
+  ////////////////////////////////////////////////////////////////////////////////
+
+-- Setando dados do usuário Oliver
+
+db.usuario.updateOne({nome: "Oliver Venturini"},
+    {
+      $set: {"nome": "Oliver Venturini",
+    "cpf": "12345678001",
+    "data_nascimento": new Date(1993, 10, 10),
+    "email": "olivinhosauro@gmail.com",
+    "idade": "28"}
+    })
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
