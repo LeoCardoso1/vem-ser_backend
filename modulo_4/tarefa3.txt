@@ -1,0 +1,146 @@
+--Find em hotéis que tem quartos maiores que 200 ordenando por nomes
+
+db.Hoteis.find({quartos: {$gte: 200}}).sort("nome")
+{ _id: ObjectId("619d8c4cf07be165f0b85ebc"),
+  nome: 'Canoas Hotel Castel',
+  logradouro: 'Rua das Acácias',
+  numero: 50,
+  cep: '92410010',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ 204, 209 ],
+  reservas: [ 8, 9, 10 ] }
+{ _id: ObjectId("619d8c4cf07be165f0b85eba"),
+  nome: 'Canoas Parque Hotel',
+  logradouro: 'Avenida Getúlio Vargas',
+  numero: 7421,
+  cep: '92010011',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ 201, 203 ],
+  reservas: [ 5 ] }
+{ _id: ObjectId("619d8c4cf07be165f0b85ebb"),
+  nome: 'Life Hotel',
+  logradouro: 'Avenida Guilhereme Schell',
+  numero: 2504,
+  cep: '92200654',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ 205, 208 ],
+  reservas: [ 6, 7 ] }
+
+
+  /////////////////////////////////////////////////////////////////////////////
+
+  -- Buscando os dois últimos registros hotéis de Porto Alegre
+
+  db.Hoteis.find({cidade: "Porto Alegre"}).sort({_id : -1}).limit(2)
+
+{ _id: ObjectId("619d51e6f07be165f0b85eb9"),
+  nome: 'Master Express Grande Hotel',
+  logradouro: 'Rua Riachuelo',
+  numero: 1070,
+  cep: '90010270',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ 101, 102 ],
+  reservas: [ 4, 5 ] }
+
+{ _id: ObjectId("619d4adbf07be165f0b85eaa"),
+  nome: 'Master Cosmopolitan',
+  logradouro: 'Rua Félix da Cunha',
+  numero: 712,
+  cep: '90570001',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ 101, 102 ],
+  reservas: [ 3, 4 ] }
+
+  /////////////////////////////////////////////////////////////////////////////
+
+  -- Buscando Hotéis que tem exatamente os quartos 101 e 102
+
+  db.Hoteis.find({quartos: [101, 102]})
+
+{ _id: ObjectId("619d494687d13bc40e7b178d"),
+  nome: 'São Rafael',
+  logradouro: 'Avenida Alípio Bonifácio',
+  numero: 5134,
+  cep: '90030140',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ 101, 102 ],
+  reservas: [ 1, 2 ] }
+
+{ _id: ObjectId("619d4adbf07be165f0b85eaa"),
+  nome: 'Master Cosmopolitan',
+  logradouro: 'Rua Félix da Cunha',
+  numero: 712,
+  cep: '90570001',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ 101, 102 ],
+  reservas: [ 3, 4 ] }
+
+{ _id: ObjectId("619d51e6f07be165f0b85eb9"),
+  nome: 'Master Express Grande Hotel',
+  logradouro: 'Rua Riachuelo',
+  numero: 1070,
+  cep: '90010270',
+  cidade: 'Porto Alegre',
+  estado: 'RS',
+  quartos: [ 101, 102 ],
+  reservas: [ 4, 5 ] }
+
+////////////////////////////////////////////////////////////////////////////////
+
+-- Procurando hotéis com três reservas
+
+db.Hoteis.find({reservas: {$size: 3}})
+
+{ _id: ObjectId("619d8c4cf07be165f0b85ebc"),
+  nome: 'Canoas Hotel Castel',
+  logradouro: 'Rua das Acácias',
+  numero: 50,
+  cep: '92410010',
+  cidade: 'Canoas',
+  estado: 'RS',
+  quartos: [ 204, 209 ],
+  reservas: [ 8, 9, 10 ] }
+
+////////////////////////////////////////////////////////////////////////////////
+
+-- Criei a collection Pokémon e populei a collection
+
+db.pokemon.insertMany( [
+   { _id: 0, nome: "Bulbasauro", tipo: "planta", quantity: 4 },
+   { _id: 1, nome: "Squirtle", tipo: "agua", quantity: 5 },
+   { _id: 2, nome: "Charmander", tipo: "fogo", quantity: 6 },
+   { _id: 3, nome: "Pikachu", tipo: "eletrico", quantity: 7 },
+   { _id: 4, nome: "Eevee", tipo: "normal", quantity: 8 },
+   { _id: 5, nome: "Snorlax", tipo: "normal", quantity: 5 }
+] )
+
+////////////////////////////////////////////////////////////////////////////////
+
+-- Um aggragate em todos os pokémon do tipo normal
+
+db.pokemon.aggregate([
+  {$match:{tipo: "normal"}},
+  {$group:{_id:"$nome", sumQuantity:{$sum: "$quantity"}}}
+])
+
+{ _id: 'Snorlax', sumQuantity: 5 }
+{ _id: 'Eevee', sumQuantity: 8 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+-- Um aggraate de grupo de pokémon que possuem mais de 7 indíviduos
+
+db.pokemon.aggregate([
+  {$match:{quantity: {$gte: 7}}},
+  {$group:{_id:"$nome", sumQuantity:{$sum: "$quantity"}}}
+])
+
+{ _id: 'Eevee', sumQuantity: 8 }
+{ _id: 'Pikachu', sumQuantity: 7 }
