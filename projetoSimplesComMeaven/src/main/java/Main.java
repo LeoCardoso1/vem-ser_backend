@@ -68,11 +68,11 @@ public class Main {
         usuarios.updateOne(Filters.eq("nome", "Charlote Cardoso"), new Document("$set", new Document("idade", "18")));
 
         // Agregando Hotéis por cidade
-
-        System.out.println("--Todos os hotéis");
-        hoteis.aggregate(Arrays.asList(match(Filters.empty()),
-                group("$cidade.nome", Accumulators.sum("qtd", 1))))
-                .forEach(doc -> System.out.println(doc.toJson()));
+//
+//        System.out.println("--Todos os hotéis");
+//        hoteis.aggregate(Arrays.asList(match(Filters.empty()),
+//                group("$cidade.nome", Accumulators.sum("qtd", 1))))
+//                .forEach(doc -> System.out.println(doc.toJson()));
 
 
 
