@@ -13,6 +13,9 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @Slf4j
 @RequiredArgsConstructor
@@ -33,6 +36,13 @@ public class ConsumerService {
         ObjetoEntity objetoEntity = objectMapper.convertValue(objetoDTO, ObjetoEntity.class);
         objetoRepository.save(objetoEntity);
         log.info("MENSAGEM LIDA: '{}', CHAVE: '{}', OFFSET: '{}'", mensagem, key, offset);
+    }
+
+    public List<ObjetoDTO> list() {
+        return objetoRepository.findAll()
+                .stream()
+                .map(objeto-> objectMapper.convertValue(objeto, ObjetoDTO.class))
+                .collect(Collectors.toList());
     }
 
 
