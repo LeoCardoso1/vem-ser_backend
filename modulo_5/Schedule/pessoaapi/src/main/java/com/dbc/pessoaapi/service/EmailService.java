@@ -1,9 +1,12 @@
 package com.dbc.pessoaapi.service;
 
 import com.dbc.pessoaapi.Exceptions.RegraDeNegocioException;
+import com.dbc.pessoaapi.dto.EmailDTO;
 import com.dbc.pessoaapi.dto.PessoaDTO;
 import com.dbc.pessoaapi.entity.PessoaEntity;
+import com.dbc.pessoaapi.kafka.Produtor;
 import com.dbc.pessoaapi.repository.PessoaRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -14,6 +17,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -22,6 +26,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -34,6 +39,7 @@ public class EmailService {
     private final Configuration configuration;
     private final PessoaRepository pessoaRepository;
     private final ObjectMapper objectMapper;
+    private final Produtor produtor;
 
     public void enviarEmailSimples(PessoaDTO pessoaDTO){
         SimpleMailMessage message = new SimpleMailMessage();
@@ -127,7 +133,33 @@ public class EmailService {
         emailSender.send(mimeMessage);
     }
 
+    @Scheduled(cron = "0 0 8,20 * * *", zone = "GMT-3")
+    public void enviarEmailKafkaCadastro() throws JsonProcessingException {
+        List<PessoaEntity> pessoasSemEndereco = pessoaRepository.pessoasSemEndereco();
+        String message = "Estamos muito felizes que você está em nosso sistema." +
+                "\n Para que possamos enviá-lo um brinde exclusivo, por gentileza, atualize seu endereço no cadastro";
 
+        for (PessoaEntity key: pessoasSemEndereco){
+            produtor.sendToSendBox(new EmailDTO(key.getEmail(),"Atualize seu cadastro", message));
+
+        }
+    }
+
+    @Scheduled(cron = "* * * 23 12 ?", zone = "GMT-3")
+    public void enviarEmailNatalKafka() throws JsonProcessingException{
+        List<PessoaEntity> pessoas = pessoaRepository.findAll();
+        String message = "Grande promoção de Natal!!!" +
+                "\n Olá " + "selecionamos algumas das nossas ofertas para você:" +
+                "\n - Na compra de um dos CDs do Chitãozinho e Xororó, ganhe um do Milionário e José Rico" +
+                "\n - Na loucação de uma VHS, a outra loucação é grátis" +
+                "\n - Fitas de SuperNintendo com 50% de desconto" +
+                "\n Aproveite, Magazine OldSchool";
+
+        for(PessoaEntity key: pessoas){
+            produtor.sendToSendBox(new EmailDTO(key.getEmail(),"Promoção de Natal", message));
+        }
+
+    }
 }
 
 

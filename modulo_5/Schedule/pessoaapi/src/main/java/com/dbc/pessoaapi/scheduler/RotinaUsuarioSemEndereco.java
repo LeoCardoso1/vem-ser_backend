@@ -20,7 +20,7 @@ public class RotinaUsuarioSemEndereco {
 
     private final PessoaService pessoaService;
 
-    @Scheduled(cron = "0 30 19 * * *")
+    @Scheduled(cron = "0 0 8,20 * * *", zone = "GMT-3")
     public void emailSemEndereco() throws InterruptedException, MessagingException, TemplateException, IOException {
         pessoaService.sendPessoaSemEndereco();
     }

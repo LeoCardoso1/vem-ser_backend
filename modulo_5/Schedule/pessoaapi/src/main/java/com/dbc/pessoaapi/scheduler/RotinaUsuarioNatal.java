@@ -24,7 +24,7 @@ public class RotinaUsuarioNatal {
 
     private final PessoaService pessoaService;
 
-    @Scheduled(cron = "0 51 19 * * *", zone = "GMT-3")
+    @Scheduled(cron = "* * * 23 12 ?", zone = "GMT-3")
     public void emailSemEndereco() throws InterruptedException, MessagingException, TemplateException, IOException {
         pessoaService.sendEmailNatal();
     }
